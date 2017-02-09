@@ -1,15 +1,11 @@
 var express = require('express');
-var request = require('request')
+var request = require('request');
+var lolAPI = require('./lolAPI');
 var router = express.Router();
-
-const apiKey = "RGAPI-93b12e3e-06d3-41fe-9692-84f8800b2809"
-const basePath = "https://global.api.pvp.net"
-const getAllChampions = "/api/lol/static-data/na/v1.2/champion"
-
 
 
 router.get('/', function(req, res, next) {
-    request(basePath+getAllChampions+ "?api_key="+apiKey, function(error, response, body){
+    request(lolAPI.getAllChampions(), function(error, response, body){
         var json = JSON.parse(body)
         var arr = []
         var keys = Object.keys(json.data)
@@ -24,8 +20,13 @@ router.get('/form', function(req, res) {
     res.render('form', { title: 'Express' });
 });
 
-router.post('/form', function(req, res){
-    res.send("Form submitted for " + req.body.summonerName);
+router.post('/form', function(req, res) {
+    var summonerName = req.body.summonerName
+    request(lolAPI.getSummonerId(summonerName), function(error, response, body) {
+        var json = JSON.parse(body)
+        var summonerId = json.saxire.id
+        res.send("Form submitted for " + req.body.summonerName);
+    })
 });
 
 
