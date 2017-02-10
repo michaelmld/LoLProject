@@ -14,15 +14,17 @@ const saxireSummonerId = "19525965"
 const zyraChampionId = "143"
 
 
-
-module.exports = {
-    getAllChampions:function() {
+var lolApi = new function () {
+    this.getAllChampions = function() {
         return staticDataPath + getAllChampions + apiKey
-    },
-    getChampionById:function(id) {
+    };
+    this.getChampionById = function(id) {
         return staticDataPath + getAllChampions + id + apiKey
-    },
-    getSummonerId:function(name) {
+    };
+    this.getSummonerId = function(name) {
         return basePath + getSummonerId + name + apiKey
-    }
+    };
 }
+
+
+module.exports = lolApi
