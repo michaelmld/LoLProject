@@ -38,8 +38,9 @@ router.post('/form', function(req, res) {
     var summonerName = req.body.summonerName
     request(lolAPI.getSummonerId(summonerName), function(error, response, body) {
         var json = JSON.parse(body)
-        var summonerId = json.saxire.id
-
+        //no error checking at all bruh
+        var summonerKey = Object.keys(json)[0]
+        var summonerId = json[summonerKey].id
         request(lolAPI.getRankedStats(summonerId), function(error, response, body) {
             var champions = JSON.parse(body).champions
             var results = champions.map(function(champion) {
