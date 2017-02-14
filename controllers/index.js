@@ -13,11 +13,9 @@ router.get('/', function(req, res) {
                 request(lolAPI.getAllChampions(), function(error, response, body){
                     var json = JSON.parse(body)
                     var keys = Object.keys(json.data)
-                    var championsMap = keys.map(function(item) {
-                        return {
-                            id: json.data[item].id,
-                            value: item
-                        }
+                    var championsMap = {}
+                    keys.forEach(function(item) {
+                        championsMap[json.data[item].id] = item
                     });
                     myCache.set("champions", championsMap)
                     res.render('index', { champions: championsMap });
@@ -45,12 +43,14 @@ router.post('/form', function(req, res) {
             var champions = JSON.parse(body).champions
             var results = champions.map(function(champion) {
                 return {
-                    id: champion.id,
+                    id: getChampionNameById(champion.id),
                     totalSessionsPlayed: champion.stats.totalSessionsPlayed
                 }
             }).sort(function(a, b){
                 return b.totalSessionsPlayed - a.totalSessionsPlayed
             });
+
+            //Do cool DB shit and algorithm shit gay stuff
 
 
             res.send(results);
@@ -58,6 +58,22 @@ router.post('/form', function(req, res) {
 
     })
 });
+
+getChampionNameById = function(id) {
+    var sigh
+    myCache.get("champions", function(err, championMap) {
+        if(!err) {
+            if(championMap == undefined){
+                throw 404
+            }
+            else {
+                console.log(championMap[id])
+                sigh = championMap[id]
+            }
+        }
+    })
+    return sigh
+};
 
 
 

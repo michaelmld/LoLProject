@@ -25,7 +25,7 @@ var lolApi = new function () {
         return basePath + getSummonerId + name + apiKey
     };
     this.getRankedStats = function(summonerId) {
-        return basePath + getRankedStats + summonerId + "/ranked" + apiKey + "&season=SEASON2015"
+        return basePath + getRankedStats + summonerId + "/ranked" + apiKey + "&season=SEASON2016"
     }
 }
 

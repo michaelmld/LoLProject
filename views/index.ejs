@@ -7,9 +7,10 @@
   <body>
     <p>Penis in Saxire's mouth </p>
     <div>
-      <% for (champion of champions) { %>
-      <p> <%= champion.id%>  -> <%= champion.value%> </p>
+      <% for (championId of Object.keys(champions)) { %>
+      <p> <%= championId%>  ->  <%=champions[championId] %></p>
       <% } %>
+
     </div>
   </body>
 </html>
