@@ -13,11 +13,12 @@
       <button type="submit" class="btn btn-primary btn-lg">Go to Form</button>
     </form>
 
-    <div>
-      <% for (championId of Object.keys(champions)) { %>
-      <p> <%= championId%>  ->  <%=champions[championId] %></p>
-      <% } %>
+    <br>
+    <ul class="list-group">
+        <% for (championId of Object.keys(champions)) { %>
+        <li class="list-group-item"> <%= championId%>  ->  <%=champions[championId] %> </li>
+        <% } %>
 
-    </div>
+    </ul>
   </body>
 </html>
