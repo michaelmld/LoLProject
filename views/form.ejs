@@ -2,21 +2,19 @@
 <html>
 <head>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 </head>
 <body>
 
-<form action="/form" method="POST">
 
-    <div class="form-group">
-        <label>Summoner Name</label>
-        <input type="text" name="summonerName" class="form-control">
-    </div>
+    <form action="/form" method="POST" class="navbar-form navbar-left">
+        <div class="form-group">
+            <input type="text" class="form-control" name="summonerName" placeholder="Summoner Name">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
 
-    <div class="form-group text-right">
-        <button type="submit" class="btn btn-primary btn-lg">Send</button>
-    </div>
-
-</form>
 
 </body>
 </html>

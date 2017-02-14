@@ -51,8 +51,6 @@ router.post('/form', function(req, res) {
             });
 
             //Do cool DB shit and algorithm shit gay stuff
-
-
             res.send(results);
         })
 
