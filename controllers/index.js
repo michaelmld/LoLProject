@@ -33,7 +33,7 @@ router.get('/form', function(req, res) {
 });
 
 router.post('/form', function(req, res) {
-    var summonerName = req.body.summonerName
+    var summonerName = encodeURI(req.body.summonerName)
     request(lolAPI.getSummonerId(summonerName), function(error, response, body) {
         var json = JSON.parse(body)
         //no error checking at all bruh
