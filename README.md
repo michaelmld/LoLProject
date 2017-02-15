@@ -16,9 +16,18 @@ https://school.scotch.io/build-a-nodejs-website?from=single   - Building a basic
 https://expressjs.com/en/guide/using-middleware.html   - About Express  
 
 
+# Mongo DB
 
 Install MongoDB
 https://www.mongodb.com/download-center?jmp=nav#community  
 1) once installed make sure to create a /data/db folder ---> mkdir -p /data/db  
 2) make sure /data/db has r/w permissions -->  sudo chmod 777 /data/db  
-3) go to where you installed mongo go into /bin, see a list of executables run ./mongod  
+
+Testing mongo DB  
+1) go to where you installed mongo go into /bin, see a list of executables run ./mongod (windows my be different)  
+2) ./mongod has started the mongo server, open up another terminal window go to mongo directory run ./mongo  
+
+Usefull commands (that i have encountered)  
+1) db --> shows name of db  
+2) db.data.insert({"username":"max"})  --> inserts json object into mongo's collection  
+3) db.data.find() --> prints out entire db collection   
