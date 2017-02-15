@@ -14,3 +14,11 @@ Helpful Links
 https://server.youtube.com/playlist?list=PL55RiY5tL51oGJorjEgl6NVeDbx_fO5jR  - Node and Express Basics includes using DBs
 https://school.scotch.io/build-a-nodejs-website?from=single   - Building a basic app with Node + Express  
 https://expressjs.com/en/guide/using-middleware.html   - About Express  
+
+
+
+Install MongoDB
+https://www.mongodb.com/download-center?jmp=nav#community  
+1) once installed make sure to create a /data/db folder ---> mkdir -p /data/db  
+2) make sure /data/db has r/w permissions -->  sudo chmod 777 /data/db  
+3) go to where you installed mongo go into /bin, see a list of executables run ./mongod  
