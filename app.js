@@ -7,6 +7,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var index = require('./controllers/index');
+var champions = require('./controllers/champions');
+
 
 var app = express();
 
@@ -22,6 +24,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
+app.use('/updateChampions', champions);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

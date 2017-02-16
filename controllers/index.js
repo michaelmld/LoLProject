@@ -1,31 +1,12 @@
 var express = require('express');
 var request = require('request');
 var lolAPI = require('./lolAPI');
-const NodeCache = require( "node-cache" );
-const myCache = new NodeCache();
+var championMap = require('../public/static/champions.json');
 var router = express.Router();
 
 
 router.get('/', function(req, res) {
-    myCache.get("champions" , function(err, value) {
-        if(!err) {
-            if(value == undefined){
-                request(lolAPI.getAllChampions(), function(error, response, body){
-                    var json = JSON.parse(body)
-                    var keys = Object.keys(json.data)
-                    var championsMap = {}
-                    keys.forEach(function(item) {
-                        championsMap[json.data[item].id] = item
-                    });
-                    myCache.set("champions", championsMap)
-                    res.render('index', { champions: championsMap });
-                })
-            }
-            else {
-                res.render('index', { champions: value });
-            }
-        }
-    })
+    res.render('index', {champions: championMap})
 });
 
 router.get('/form', function(req, res) {
@@ -43,7 +24,7 @@ router.post('/form', function(req, res) {
             var champions = JSON.parse(body).champions
             var results = champions.map(function(champion) {
                 return {
-                    id: getChampionNameById(champion.id),
+                    id: championMap[champion.id],
                     totalSessionsPlayed: champion.stats.totalSessionsPlayed
                 }
             }).sort(function(a, b){
@@ -57,21 +38,6 @@ router.post('/form', function(req, res) {
     })
 });
 
-getChampionNameById = function(id) {
-    var sigh
-    myCache.get("champions", function(err, championMap) {
-        if(!err) {
-            if(championMap == undefined){
-                throw 404
-            }
-            else {
-                console.log(championMap[id])
-                sigh = championMap[id]
-            }
-        }
-    })
-    return sigh
-};
 
 
 
