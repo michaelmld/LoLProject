@@ -6,3 +6,26 @@ body {
 a {
   color: #00B7FF;
 }
+
+
+body {
+  padding-top: 50px;
+}
+.searchContainer {
+  text-align: center;
+  position: relative;
+  top:100px;
+}
+
+.homeContainer {
+  height:90vh;
+}
+
+#searchText {
+  margin-bottom:40px;
+}
+
+.searchBar {
+  width:50%;
+  display: inline-block;
+}

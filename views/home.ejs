@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+
+</head>
+<body>
+
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div class="container homeContainer">
+
+    <div class="searchContainer">
+    <h1 id="searchText">What pro are you?</h1>
+    <form action="/" method="POST">
+        <div class="searchBar" >
+            <div class="input-group">
+                <div class="input-group-btn">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Region <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li id="NA"><a href="#">NA</a></li>
+                        <li id="EU"><a href="#">EU</a></li>
+                    </ul>
+                </div>
+                <input type="text" class="form-control" name="summonerName" placeholder="Summoner Name">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">Submit</button>
+                </span>
+            </div><!-- /input-group -->
+        </div>
+    </form>
+
+    </div>
+
+</div><!-- /.container -->
+
+
+
+
+<div class="mastfoot">
+    <div class="inner">
+        <p>Troy and Saxire are Faggots <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+    </div>
+</div>
+
+
+</body>
+</html>
+
+<script>
+    $(document).ready(function() {
+        $("#NA").click(function(){
+            $(".dropdown-toggle").html('NA <span class="caret">')
+        })
+
+        $("#EU").click(function(){
+            $(".dropdown-toggle").html('EU <span class="caret">')
+        })
+
+    });
+</script>
