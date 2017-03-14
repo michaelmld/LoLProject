@@ -19,7 +19,7 @@ router.post('/', function(req, res) {
             var summonerStats = results[0]
             var summonerStats2 = results[1]
             var commonChampions = findCommonChampions(summonerStats, summonerStats2)
-            console.log(s)
+            console.log(commonChampions)
         }
         else {
             console.log("yo i dont work faggot")
