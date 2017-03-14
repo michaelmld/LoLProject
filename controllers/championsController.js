@@ -4,7 +4,7 @@ var lolAPI = require('./lolAPIController');
 var fs = require('fs');
 var router = express.Router();
 
-//This routes file is used to update are static champions in case new champions are released
+//This routes file is used to update our static champions in case new champions are released
 
 router.get('/', function (req, res) {
     request(lolAPI.getAllChampions(), function (error, response, body) {
