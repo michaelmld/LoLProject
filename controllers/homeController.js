@@ -25,14 +25,12 @@ router.post('/', function(req, res) {
         return new Promise(function(resolve, reject){
             request(lolAPI.getRankedStats(summonerId), function(error, response, body) {
                 var champions = JSON.parse(body).champions
-                var results = champions.map(function(champion) {
-                    return {
+                var results = champions.map(champion =>
+                    ({
                         id: champion.id,
                         stats: champion.stats
-                    }
-                }).sort(function(a, b){
-                    return b.totalSessionsPlayed - a.totalSessionsPlayed
-                });
+                    })
+                ).sort((a, b) => a.id - b.id).filter(result => result.id != 0);
                 resolve(results)
             })
         })
@@ -48,18 +46,18 @@ router.post('/', function(req, res) {
         })
     }
 
-    Promise.all([getSummonerId(summonerName), getSummonerId(summonerName2)]).then(function(results){
+    Promise.all([getSummonerId(summonerName), getSummonerId(summonerName2)]).then( results => {
         if (results.length  == 2) {
             var summonerStats = results[0]
             var summonerStats2 = results[1]
-
+            //todo use bubble sort to figure out common champions played
         }
         else {
             console.log("yo i dont work faggot")
         }
     })
 
-    res.send("hi")
+    res.send("hi work in progress")
 });
 
 
