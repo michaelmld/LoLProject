@@ -20,6 +20,17 @@ router.post('/', function(req, res) {
             var summonerStats2 = results[1]
             var commonChampions = findCommonChampions(summonerStats, summonerStats2)
             console.log(commonChampions)
+	    var cmp = compareCommonChampions(commonChampions);
+	    if (cmp > 0) {
+	        console.log("" + summonerName + " wins!");
+            }
+            else if (cmp < 0) {
+	        console.log("" + summonerName2 + " wins!");
+	    }
+            else {
+                console.log("It's a tie. " + summonerName + " and " + summonerName2 + " are both equally trash!");
+	    }
+
         }
         else {
             console.log("yo i dont work faggot")
@@ -74,6 +85,31 @@ var findCommonChampions = function(championsA, championsB) {
         }
     }
     return commonChampions
+}
+
+var compareCommonChampions = function(commonChampions) {
+    var aCount = 0;
+    var bCount = 0;
+    commonChampions.forEach(function(championTuple) {
+        var cmp = compareChampionStats(championTuple[0].stats, championTuple[1].stats);
+	if (cmp > 0) {
+	    ++aCount;
+	}
+	else if (cmp < 0) {
+	    ++bCount;
+	}
+	else {
+	    // same for this champion
+	}
+    });
+
+    return aCount - bCount;
+}
+
+var compareChampionStats = function(statsA, statsB) {
+    var result = statsA.totalSessionsWon - statsB.totalSessionsWon;
+
+    return result;
 }
 
 // router.get('/form', function(req, res) {
