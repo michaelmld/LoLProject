@@ -19,18 +19,10 @@ router.post('/', function(req, res) {
             var summonerStats = results[0]
             var summonerStats2 = results[1]
             var commonChampions = findCommonChampions(summonerStats, summonerStats2)
-            console.log(commonChampions)
-	    var cmp = compareCommonChampions(commonChampions);
-	    if (cmp > 0) {
-	        console.log("" + summonerName + " wins!");
-            }
-            else if (cmp < 0) {
-	        console.log("" + summonerName2 + " wins!");
-	    }
-            else {
-                console.log("It's a tie. " + summonerName + " and " + summonerName2 + " are both equally trash!");
-	    }
+            console.log(commonChampions);
 
+            var compareChampionsResult = compareCommonChampions(commonChampions);
+            displayComparisonResults(summonerName, summonerName2, compareChampionsResult);
         }
         else {
             console.log("yo i dont work faggot")
@@ -88,28 +80,63 @@ var findCommonChampions = function(championsA, championsB) {
 }
 
 var compareCommonChampions = function(commonChampions) {
-    var aCount = 0;
-    var bCount = 0;
-    commonChampions.forEach(function(championTuple) {
-        var cmp = compareChampionStats(championTuple[0].stats, championTuple[1].stats);
-	if (cmp > 0) {
-	    ++aCount;
-	}
-	else if (cmp < 0) {
-	    ++bCount;
-	}
-	else {
-	    // same for this champion
-	}
+    var ret = {
+        // overall result for all the champions.
+        compare: 0,
+        // comparison for each champion.
+        // array will consist of json like {id: champion id, result: return value from compareChampionStats}
+        championCompareList: []
+    };
+
+    commonChampions.forEach(([championA, championB]) => {
+        var championCompare = compareChampionStats(championA.stats, championB.stats);
+        ret.compare += championCompare.compare;
+        ret.championCompareList.push({
+            id: championA.id,
+            result: championCompare
+        });
     });
 
-    return aCount - bCount;
+    return ret;
 }
 
 var compareChampionStats = function(statsA, statsB) {
-    var result = statsA.totalSessionsWon - statsB.totalSessionsWon;
+    var winCmp = statsA.totalSessionsWon - statsB.totalSessionsWon;
+    var cmp = (winCmp > 0 ? 1 : (winCmp < 0 ? -1 : 0));
+    var championCompare = {
+        compare: cmp,
+        reason: {
+            winCompare: winCmp
+            // More things will go in here eventually
+        }
+    };
 
-    return result;
+    return championCompare;
+}
+
+// takes the return value from compareCommonChampions
+var displayComparisonResults = function(summoner1, summoner2, compareChampionsResult) {
+    if (compareChampionsResult.compare > 0) {
+        console.log("" + summoner1 + " wins!");
+    }
+    else if (compareChampionsResult.compare < 0) {
+        console.log("" + summoner2 + " wins!");
+    }
+    else {
+        console.log("It's a tie. " + summoner1 + " and " + summoner2 + " are both equally trash!");
+    } 
+
+    console.log("Results for each champion are as follows:");
+    compareChampionsResult.championCompareList.forEach(champion => {
+        console.log("\tChampion id " + champion.id);
+        if (champion.result.compare == 0) {
+            console.log("\t\tTie.");
+        }
+        else {
+            var championWinner = champion.result.compare > 0 ? summoner1 : summoner2;
+            console.log("\t\t" + championWinner + " won by " + Math.abs(champion.result.reason.winCompare) + " wins.");
+        }
+    });
 }
 
 // router.get('/form', function(req, res) {
