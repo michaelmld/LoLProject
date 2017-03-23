@@ -80,23 +80,21 @@ var findCommonChampions = function(championsA, championsB) {
 }
 
 var compareCommonChampions = function(commonChampions) {
-    var ret = {
-        // overall result for all the champions.
-        compare: 0,
-        // comparison for each champion.
-        // array will consist of json like {id: champion id, result: return value from compareChampionStats}
-        championCompareList: []
-    };
-
-    commonChampions.forEach(([championA, championB]) => {
+    var compareValue = 0;
+    var championCompareList = commonChampions.map( ([championA, championB]) => {
         var championCompare = compareChampionStats(championA.stats, championB.stats);
-        ret.compare += championCompare.compare;
-        ret.championCompareList.push({
+        compareValue += championCompare.compare;
+        return ({
             id: championA.id,
             result: championCompare
         });
     });
 
+    var ret = {
+        compare : compareValue,  // overall result for all the champions.
+        // comparison for each champion.
+        championCompareList: championCompareList // array will consist of json like {id: championId, result: return value from compareChampionStats}
+    }
     return ret;
 }
 
