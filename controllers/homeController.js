@@ -23,13 +23,14 @@ router.post('/', function(req, res) {
 
             var compareChampionsResult = compareCommonChampions(commonChampions);
             displayComparisonResults(summonerName, summonerName2, compareChampionsResult);
+            res.render('results', { winner: compareChampionsResult.compare, resultList:compareChampionsResult.championCompareList });
+
         }
         else {
             console.log("yo i dont work faggot")
         }
     })
 
-    res.send("hi work in progress")
 });
 
 var getSummonerStatsWithId = function (summonerId) {
