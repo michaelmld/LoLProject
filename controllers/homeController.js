@@ -19,15 +19,13 @@ router.post('/', function(req, res) {
             var summonerStats = results[0]
             var summonerStats2 = results[1]
             var commonChampions = findCommonChampions(summonerStats, summonerStats2)
-            console.log(commonChampions);
 
             var compareChampionsResult = compareCommonChampions(commonChampions);
             displayComparisonResults(summonerName, summonerName2, compareChampionsResult);
-            res.render('results', { winner: compareChampionsResult.compare, resultList:compareChampionsResult.championCompareList });
-
+            res.render('results', { summonerA: summonerName, summonerB: summonerName2, winner: compareChampionsResult.compare, resultList:compareChampionsResult.championCompareList });
         }
         else {
-            console.log("yo i dont work faggot")
+            console.error("failed two get stats for " + summonerName + " or " +summonerName2)
         }
     })
 
@@ -52,6 +50,7 @@ var getSummonerStatsWithId = function (summonerId) {
 var getSummonerStats = function(summonerName) {
     return new Promise(function(resolve, reject) {
         request({url: lolAPI.getSummonerId(summonerName), json:true}, function(error, response, body) {
+            //TODO error check later
             var summonerKey = Object.keys(body)[0]
             var summonerId = body[summonerKey].id
             resolve(getSummonerStatsWithId(summonerId))
@@ -86,7 +85,7 @@ var compareCommonChampions = function(commonChampions) {
         var championCompare = compareChampionStats(championA.stats, championB.stats);
         compareValue += championCompare.compare;
         return ({
-            id: championA.id,
+            id: championMap[championA.id],
             result: championCompare
         });
     });

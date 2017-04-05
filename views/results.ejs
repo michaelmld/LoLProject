@@ -2,11 +2,47 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel='stylesheet' href='/stylesheets/results.css'/>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <title>Title</title>
 </head>
 <body>
-    <% for (result of resultList) { %>
-    <li class="list-group-item"> <%= result.id %>   </li>
-    <% } %>
+
+    <div class="col-md-4 summonerColumn resultColumn">
+        <%= summonerA %>
+        <div>
+            <% for (result of resultList) { %>
+                <% if(result.result.compare > 0){ %>
+                    <h1>winner</h1>
+                <% } else{ %>
+                    <h1>loser</h1>
+                <% } %>
+            <% } %>
+        </div>
+
+    </div>
+    <div class="col-md-4 resultColumn">
+        Champions
+
+            <% for (result of resultList) { %>
+        <h1><%= result.id %></h1>
+            <% } %>
+
+    </div>
+    <div class="col-md-4 summonerColumn resultColumn">
+        <%= summonerB %>
+        <div>
+            <% for (result of resultList) { %>
+                <% if(result.result.compare < 0){ %>
+                    <h1>winner</h1>
+                <% } else{ %>
+                   <h1>loser</h1>
+                <% } %>
+            <% } %>
+        </div>
+    </div>
+
 </body>
 </html>
