@@ -25,7 +25,7 @@ router.post('/', function(req, res) {
             res.render('results', { summonerA: summonerName, summonerB: summonerName2, winner: compareChampionsResult.compare, resultList:compareChampionsResult.championCompareList });
         }
         else {
-            console.error("failed two get stats for " + summonerName + " or " +summonerName2)
+            console.error("failed to get stats for " + summonerName + " or " +summonerName2)
         }
     })
 
@@ -85,7 +85,7 @@ var compareCommonChampions = function(commonChampions) {
         var championCompare = compareChampionStats(championA.stats, championB.stats);
         compareValue += championCompare.compare;
         return ({
-            id: championMap[championA.id],
+            championName: championMap[championA.id],
             result: championCompare
         });
     });
@@ -126,7 +126,7 @@ var displayComparisonResults = function(summoner1, summoner2, compareChampionsRe
 
     console.log("Results for each champion are as follows:");
     compareChampionsResult.championCompareList.forEach(champion => {
-        console.log("\tChampion id " + champion.id);
+        console.log("\tChampion id " + champion.championName);
         if (champion.result.compare == 0) {
             console.log("\t\tTie.");
         }
