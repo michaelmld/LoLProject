@@ -11,34 +11,34 @@
 <body>
 
     <div class="col-md-4 summonerColumn resultColumn">
-        <%= summonerA %>
+        <h1><%= summonerA %></h1>
         <div>
             <% for (result of resultList) { %>
                 <% if(result.result.compare > 0){ %>
-                    <h1>winner</h1>
+                    <h2>winner</h2>
                 <% } else{ %>
-                    <h1>loser</h1>
+                    <h2>loser</h2>
                 <% } %>
             <% } %>
         </div>
 
     </div>
     <div class="col-md-4 resultColumn">
-        Champions
+        <h1>Champions</h1>
 
             <% for (result of resultList) { %>
-        <h1><%= result.id %></h1>
+        <h2><%= result.championName %></h2>
             <% } %>
 
     </div>
     <div class="col-md-4 summonerColumn resultColumn">
-        <%= summonerB %>
+        <h1><%= summonerB %></h1>
         <div>
             <% for (result of resultList) { %>
                 <% if(result.result.compare < 0){ %>
-                    <h1>winner</h1>
+                    <h2>winner</h2>
                 <% } else{ %>
-                   <h1>loser</h1>
+                   <h2>loser</h2>
                 <% } %>
             <% } %>
         </div>
