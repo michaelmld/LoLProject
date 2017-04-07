@@ -4,6 +4,8 @@ var lolAPI = require('./lolAPIController');
 var Promise = require('promise')
 var championMap = require('../public/static/champions.json');
 var summonerComparer = require('../lib/summonerComparer')
+var commonChampionFinder = require('../lib/commonChampionFinder')
+
 var router = express.Router();
 
 
@@ -19,7 +21,7 @@ router.post('/', function(req, res) {
         if (results.length  == 2) {
             var summonerStats = results[0]
             var summonerStats2 = results[1]
-            var commonChampions = findCommonChampions(summonerStats, summonerStats2)
+            var commonChampions = commonChampionFinder.findCommonChampions(summonerStats, summonerStats2)
 
             var compareChampionsResult = summonerComparer.compareCommonChampions(commonChampions);
             summonerComparer.displayComparisonResults(summonerName, summonerName2, compareChampionsResult);
@@ -59,25 +61,5 @@ var getSummonerStats = function(summonerName) {
     })
 }
 
-var findCommonChampions = function(championsA, championsB) {
-    var i = 0
-    var j = 0
-    var commonChampions = []
-    while(i < championsA.length && j < championsB.length) {
-        if(championsA[i].id == championsB[j].id){
-            var championArray = [championsA[i], championsB[j]]
-            commonChampions.push(championArray)
-            i++
-            j++
-        }
-        else if(championsA[i].id > championsB[j].id) {
-            j++
-        }
-        else {
-            i++
-        }
-    }
-    return commonChampions
-}
 
 module.exports = router;
