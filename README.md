@@ -49,7 +49,7 @@
 1. Run the project: `npm run server`
 
 
-Helpful Links  
+# Learning Material
 https://server.youtube.com/playlist?list=PL55RiY5tL51oGJorjEgl6NVeDbx_fO5jR  - Node and Express Basics includes using DBs
 https://school.scotch.io/build-a-nodejs-website?from=single   - Building a basic app with Node + Express  
 https://expressjs.com/en/guide/using-middleware.html   - About Express  
