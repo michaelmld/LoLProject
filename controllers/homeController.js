@@ -24,8 +24,9 @@ router.post('/', function(req, res) {
             var commonChampions = commonChampionFinder.findCommonChampions(summonerStats, summonerStats2)
 
             var compareChampionsResult = summonerComparer.compareCommonChampions(commonChampions);
-            summonerComparer.displayComparisonResults(summonerName, summonerName2, compareChampionsResult);
-            res.render('results', { summonerA: summonerName, summonerB: summonerName2, winner: compareChampionsResult.compare, resultList:compareChampionsResult.championCompareList });
+
+            summonerComparer.displayComparisonResults(summonerName, summonerName2, compareChampionsResult)
+            res.render('results', { summonerA: summonerName, summonerB: summonerName2, winner: compareChampionsResult.finalWinner, resultList:compareChampionsResult.championCompareList });
         }
         else {
             console.error("failed to get stats for " + summonerName + " or " +summonerName2)

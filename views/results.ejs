@@ -14,10 +14,12 @@
         <h1><%= summonerA %></h1>
         <div>
             <% for (result of resultList) { %>
-                <% if(result.result.compare > 0){ %>
-                    <h2>winner</h2>
-                <% } else{ %>
-                    <h2>loser</h2>
+                <% if(result.winner > 0){ %>
+                    <h2>Winner</h2>
+                <% } else if(result.winner < 0) { %>
+                    <h2>Loser</h2>
+                <% }  else {%>
+                    <h2>Tie </h2>
                 <% } %>
             <% } %>
         </div>
@@ -35,10 +37,12 @@
         <h1><%= summonerB %></h1>
         <div>
             <% for (result of resultList) { %>
-                <% if(result.result.compare < 0){ %>
-                    <h2>winner</h2>
-                <% } else{ %>
-                   <h2>loser</h2>
+                <% if(result.winner < 0){ %>
+                    <h2> Winner </h2>
+                <% } else if (result.winner > 0){ %>
+                   <h2> Loser </h2>
+                <% } else {%>
+                    <h2> Tie </h2>
                 <% } %>
             <% } %>
         </div>
