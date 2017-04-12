@@ -48,10 +48,19 @@
 
     <div class="col-md-9 resultsContainer">
 
+        <div class="congratsView" >
+            <% if(winner > 0){ %>
+            <h1>Congrats <%= summonerA %> you are not trash! </h1>
+            <% } else if(winner < 0) { %>
+            <h1> Congrats <%= summonerB %> you are not trash! </h1>
+            <% }  else {%>
+            <h1> Tie </h1>
+            <% } %>
+        </div>
         <% for(result of resultList) { %>
         <div class="rightContainerContentPanel" id=<%="result"+result.championName%> >
             <% for(thing of result.result) {%>
-                <div class="test">
+                <div>
                     category = <%=thing.compareStats.category %>
                     <div>
                         summonerA = <%=thing.compareStats.summonerAStat %>
@@ -74,6 +83,7 @@
         $(".listRow").click(function () {
             var attr = $(this).attr('id');
             $(".rightContainerContentPanel").hide();
+            $(".congratsView").hide();
             $("#"+"result"+attr).toggle();
         });
     });

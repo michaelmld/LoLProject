@@ -40,11 +40,16 @@
   cursor: pointer;
 }
 
-.test{
-  display: block;
+.listRowContent:hover {
+  background-color: lightgray;
 }
-
 
 .rightContainerContentPanel{
   display: none;
+}
+
+.congratsView{
+  text-align: center;
+  position: relative;
+  top:50%;
 }
