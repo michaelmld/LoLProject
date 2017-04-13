@@ -1,3 +1,55 @@
 .resultColumn {
   text-align: center;
 }
+
+.listContainer.col-md-3 {
+  height:100vh;
+  border:1px solid black;
+  padding: 0px;
+  overflow: scroll;
+}
+
+.resultsContainer {
+  height:100vh;
+  border:1px solid black;
+  overflow: scroll;
+}
+
+.rowHeader{
+  display: inline-block;
+  float: left;
+  width:33%;
+  text-align: center;
+}
+
+.rowItem {
+  display: inline-block;
+  float: left;
+  width:33%;
+  text-align: center;
+}
+
+.listRow {
+  height:40px;
+  border-bottom: 1px solid black;
+  display: flex;
+  align-items: center;
+  overflow: hidden; /*so list row will grow to the height of its content since i float the contents */
+}
+.listRowContent{
+  cursor: pointer;
+}
+
+.listRowContent:hover {
+  background-color: lightgray;
+}
+
+.rightContainerContentPanel{
+  display: none;
+}
+
+.congratsView{
+  text-align: center;
+  position: relative;
+  top:50%;
+}

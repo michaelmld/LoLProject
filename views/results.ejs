@@ -10,43 +10,82 @@
 </head>
 <body>
 
-    <div class="col-md-4 summonerColumn resultColumn">
-        <h1><%= summonerA %></h1>
-        <div>
-            <% for (result of resultList) { %>
-                <% if(result.winner > 0){ %>
-                    <h2>Winner</h2>
-                <% } else if(result.winner < 0) { %>
-                    <h2>Loser</h2>
-                <% }  else {%>
-                    <h2>Tie </h2>
-                <% } %>
-            <% } %>
+    <div class="col-md-3 listContainer">
+        <div class="listRowHeader listRow">
+            <div class="rowHeader"> <%= summonerA %> </div>
+            <div class="rowHeader"> champion </div>
+            <div class="rowHeader"> <%= summonerB %> </div>
         </div>
 
-    </div>
-    <div class="col-md-4 resultColumn">
-        <h1>Champions</h1>
+        <% for(result of resultList) { %>
+        <div class="listRowContent listRow" id=<%=result.championName%>>
+            <div class="rowItem">
+                    <% if(result.winner > 0){ %>
+                    Winner
+                    <% } else if(result.winner < 0) { %>
+                    Loser
+                    <% }  else {%>
+                    Tie
+                    <% } %>
 
-            <% for (result of resultList) { %>
-        <h2><%= result.championName %></h2>
-            <% } %>
+                </div>
+                <div class="rowItem"> <%= result.championName %> </div>
+                <div class="rowItem">
+                    <% if(result.winner < 0){ %>
+                    Winner
+                    <% } else if(result.winner > 0) { %>
+                    Loser
+                    <% }  else {%>
+                    Tie
+                    <% } %>
+            </div>
+        </div>
+        <% } %>
+
+
 
     </div>
-    <div class="col-md-4 summonerColumn resultColumn">
-        <h1><%= summonerB %></h1>
-        <div>
-            <% for (result of resultList) { %>
-                <% if(result.winner < 0){ %>
-                    <h2> Winner </h2>
-                <% } else if (result.winner > 0){ %>
-                   <h2> Loser </h2>
-                <% } else {%>
-                    <h2> Tie </h2>
-                <% } %>
+
+    <div class="col-md-9 resultsContainer">
+
+        <div class="congratsView" >
+            <% if(winner > 0){ %>
+            <h1>Congrats <%= summonerA %> you are not trash! </h1>
+            <% } else if(winner < 0) { %>
+            <h1> Congrats <%= summonerB %> you are not trash! </h1>
+            <% }  else {%>
+            <h1> Tie </h1>
             <% } %>
         </div>
+        <% for(result of resultList) { %>
+        <div class="rightContainerContentPanel" id=<%="result"+result.championName%> >
+            <% for(stat of result.statList) {%>
+                <div>
+                    category = <%=stat.statInfo.category %>
+                    <div>
+                        summonerA = <%=stat.statInfo.summonerAStat %>
+                    </div>
+                    <div>
+                        summonerB =<%=stat.statInfo.summonerBStat %>
+                    </div>
+                    <hr>
+                </div>
+            <%}%>
+        </div>
+        <%}%>
     </div>
+
+
 
 </body>
+<script>
+    $(document).ready(function() {
+        $(".listRow").click(function () {
+            var attr = $(this).attr('id');
+            $(".rightContainerContentPanel").hide();
+            $(".congratsView").hide();
+            $("#"+"result"+attr).toggle();
+        });
+    });
+</script>
 </html>
