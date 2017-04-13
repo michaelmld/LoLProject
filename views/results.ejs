@@ -59,14 +59,14 @@
         </div>
         <% for(result of resultList) { %>
         <div class="rightContainerContentPanel" id=<%="result"+result.championName%> >
-            <% for(thing of result.result) {%>
+            <% for(stat of result.statList) {%>
                 <div>
-                    category = <%=thing.compareStats.category %>
+                    category = <%=stat.statInfo.category %>
                     <div>
-                        summonerA = <%=thing.compareStats.summonerAStat %>
+                        summonerA = <%=stat.statInfo.summonerAStat %>
                     </div>
                     <div>
-                        summonerB =<%=thing.compareStats.summonerBStat %>
+                        summonerB =<%=stat.statInfo.summonerBStat %>
                     </div>
                     <hr>
                 </div>
