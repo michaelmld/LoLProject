@@ -18,9 +18,9 @@ router.post('/results', function(req, res) {
     var summonerName2 = encodeURI(req.body.summonerName2)
 
     var statProms = Promise.all([getSummonerStats(summonerName), getSummonerStats(summonerName2)])
-    statProms.then(function(value) {
-        var summonerStats = value[0]
-        var summonerStats2 = value[1]
+    statProms.then(function(resArr) {
+        var summonerStats = resArr[0]
+        var summonerStats2 = resArr[1]
         var commonChampions = commonChampionFinder.findCommonChampions(summonerStats, summonerStats2)
 
         var compareChampionsResult = summonerComparer.compareCommonChampions(commonChampions);
