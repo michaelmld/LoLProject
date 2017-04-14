@@ -45,3 +45,7 @@ body {
   display: block;
   width: 100%;
 }
+
+.hiddenForm{
+  display: none;
+}
