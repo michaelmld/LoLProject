@@ -49,3 +49,7 @@ body {
 .hiddenForm{
   display: none;
 }
+
+.regionDropdown{
+  width: 75px;
+}

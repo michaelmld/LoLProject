@@ -15,9 +15,12 @@ router.get('/', function(req, res) {
 router.post('/results', function(req, res) {
     var summonerName = encodeURI(req.body.summonerName)
     var summonerName2 = encodeURI(req.body.summonerName2)
+    var region = encodeURI(req.body.region)
+    var region2 = encodeURI(req.body.region2)
 
-    var statProms = Promise.all([statsFetcher.fetchSummonerStats(summonerName), statsFetcher.fetchSummonerStats(summonerName2)])
-    statProms.then(function(resArr) {
+
+    var statProms = Promise.all([statsFetcher.fetchSummonerStats(summonerName, region), statsFetcher.fetchSummonerStats(summonerName2, region2)])
+    statProms.then((resArr) => {
         var summonerStats = resArr[0]
         var summonerStats2 = resArr[1]
         var commonChampions = commonChampionFinder.findCommonChampions(summonerStats, summonerStats2)

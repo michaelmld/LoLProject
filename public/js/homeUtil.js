@@ -9,8 +9,8 @@ $(document).ready(function() {
     })
 
     $("#EU").click(function(){
-        $("#regionDropdown").html('EU <span class="caret">')
-        $("#hiddenRegion").val("EU");
+        $("#regionDropdown").html('EUW <span class="caret">')
+        $("#hiddenRegion").val("EUW");
     })
 
     $("#NA2").click(function(){
@@ -19,8 +19,8 @@ $(document).ready(function() {
     })
 
     $("#EU2").click(function(){
-        $("#regionDropdown2").html('EU <span class="caret">')
-        $("#hiddenRegion2").val("EU");
+        $("#regionDropdown2").html('EUW <span class="caret">')
+        $("#hiddenRegion2").val("EUW");
     })
 
 });
