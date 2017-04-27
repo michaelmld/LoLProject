@@ -1,6 +1,6 @@
 var express = require('express');
 var request = require('request');
-var lolAPI = require('./lolAPIController');
+var lolAPI = require('../lib/lolAPI');
 var fs = require('fs');
 var router = express.Router();
 
