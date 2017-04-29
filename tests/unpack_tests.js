@@ -1,5 +1,5 @@
 // TODO: look for an actual testing framework
-var unpack = require('./lib/unpack.js');
+var unpack = require('../lib/unpack.js');
 
 class PrimitivesClass {
     constructor() {
@@ -81,30 +81,24 @@ var arraysJson = {
     ]
 
 };
+var util = require('util');
+
+var results = true;
 
 var primitives = unpack(PrimitivesClass, primitivesJson);
-console.log("PrimitivesClass unpack");
-console.log(primitives);
-console.log("Tests:");
-console.log("'integer' === 1: " + (primitives.integer === 1));
-console.log("'decimal' === 1.5: " + (primitives.decimal === 1.5));
-console.log("'string' === 'foo': " + (primitives.string === "foo"));
+results = results && (JSON.stringify(primitives) === JSON.stringify(primitivesJson));
+console.log("PrimitivesClass unpack: " + ((results = results && (JSON.stringify(primitives) === JSON.stringify(primitivesJson))) ? "pass" : "fail"));
+console.log(util.inspect(primitives, showHidden=false, depth=null, colorize=true));
 console.log();
 
 var objects = unpack(ObjectsClass, objectsJson);
-console.log("ObjectsClass unpack");
-console.log(objects);
-console.log("Tests:");
-console.log("'integer' === 1: " + (objects.integer === 1));
-console.log("'decimal' === 1.5: " + (objects.decimal === 1.5));
-console.log("'string' === 'foo': " + (objects.string === "foo"));
-console.log("'object.integer' === 2: " + (objects.object.integer === 2));
-console.log("'object.decimal' === 2.5: " + (objects.object.decimal === 2.5));
-console.log("'object.string' === 'bar': " + (objects.object.string === "bar"));
+console.log("ObjectsClass unpack: " + ((results = results && (JSON.stringify(objects) === JSON.stringify(objectsJson))) ? "pass" : "fail"));
+console.log(util.inspect(objects, showHidden=false, depth=null, colorize=true));
 console.log();
 
 var arrays = unpack(ArraysClass, arraysJson);
-console.log("ArraysClass unpack");
-console.log(JSON.stringify(arrays, null, 2));
-// TODO: finish adding the tests here
+console.log("ArraysClass unpack: " + ((results = results && (JSON.stringify(arrays) === JSON.stringify(arraysJson))) ? "pass" : "fail"));
+console.log(util.inspect(arrays, showHidden=false, depth=null, colorize=true));
 console.log();
+
+console.log("Test results: " + (results ? "pass" : "fail"));
