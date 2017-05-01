@@ -48,6 +48,8 @@
     1. Run `npm install`
 1. Run the project: `npm run server`
 
+#How to run tests
+npm test   
 
 # Learning Material
 https://server.youtube.com/playlist?list=PL55RiY5tL51oGJorjEgl6NVeDbx_fO5jR  - Node and Express Basics includes using DBs
