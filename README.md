@@ -48,7 +48,7 @@
     1. Run `npm install`
 1. Run the project: `npm run server`
 
-#How to run tests   
+# How to run tests
 npm test   
 
 # Learning Material
